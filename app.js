@@ -1,11 +1,13 @@
-  
+ // api resource link
+ // https://www.thecocktaildb.com/api.php 
+ 
+ 
  const disp = function() {
     const ingreds = {
 
-        Alc: " 'rum', 'whiskey', 'vodka', 'tequila",
-        Mixer: "' cran juice', 'seltzer', 'tonic', 'beer, 'cola', 'OJ'",
-        Fruit: "'lime', 'orange', 'cherry'",
-        Ice: 'yes, no'
+        Alc: [ 'rum', 'whiskey', 'vodka', 'tequila' ] ,
+        Mixer: ['cran juice', 'seltzer', 'tonic', 'beer', 'cola', 'OJ'] ,
+        Fruit: ['lime', 'orange', 'cherry'],
 
         }
     
@@ -18,45 +20,69 @@
 
             const categories = document.createElement('input')
             categories.setAttribute('type', 'checkbox')
+
             categories.innerHTML = ingreds[prop]
             categories.appendChild(sect)
+
+            document.body.appendChild(categories)
             document.body.appendChild(sect)
             console.log(ingreds[prop])
         }
          
 
+        const searchBox = document.createElement('input')
+        searchBox.setAttribute('type', 'text')
+        searchBox.setAttribute('id', 'searchVal')
+        searchBox.value = 'Enter Drink Type'
+        document.body.appendChild(searchBox)
+
+        var searchID = document.querySelector('#searchVal');
+
         const searchBtn = document.createElement('button')
          searchBtn.innerHTML = "Search for Drinks"
          document.body.appendChild(searchBtn)
-        //searchBtn.addEventListener('click', find())
-         
-        async function find(options) {
-            const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
-        
-            const resp = await fetch(url)
-            const data = await resp.json()
-            console.log(data)
-            //include youtube video api
-        
-        
-        }
+        searchBtn.addEventListener('click', find(searchID))
 
     
 }
 
-// run the actual search inside for the application
+//
+// Search function of App
+//
 
+    async function find(searchVal) {
+    //for each loop on each selected item in the ingreds object due to api restrictions
+    const item = searchVal
+    //forEach(i in item) 
+    const baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=rum"
 
-async function find() {
-    const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+    //searchUrl = (baseUrl + item)
 
-    const resp = await fetch(url)
+    //const resp = await fetch(searchUrl)
+    const resp = await fetch(baseUrl)
     const data = await resp.json()
     console.log(data)
-    //include youtube video api
 
 
-}
+    //include youtube video api based on keyword search on whole drink
+
+    }
+
+
+
+    //Results
+    //
+    //
+    //////////
+
+    //create a box or display format for each result found by the api
+
+    const displayRes = function(){
+
+    
+
+        }
+
 
 // run the application and display data
 window.onload = function() {
