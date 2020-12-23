@@ -1,44 +1,42 @@
- // api resource link
- // https://www.thecocktaildb.com/api.php 
- 
 
 
+//call the search function on click
 const search_btn = document.querySelector("#btn");
-search_btn.addEventListener("click", test)
+search_btn.addEventListener("click", find_drinks)
 
+//get the input from the text box
 const saved_data = document.getElementById('search').value 
 
-
-//actually display the items and results 
+//get the id of the result field
 result_field = document.querySelector('#res')
-//result_field.innerHTML = saved_data
 
-function test(){
-
-    console.log(saved_data)
-    
-}
-
-
-// Search function
-async function find_drinks(searchVal) {
-        //for each loop on each selected item in the ingreds object due to api restrictions
-        console.log(searchVal, 'THIS IS THE SEARCH Value')
+//search function
+async function find_drinks(saved_data) {
+        console.log(saved_data)
         const item = 'rum'
         const baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + item
 
     //searchUrl = (baseUrl + item)
-
     //const resp = await fetch(searchUrl)
-        const resp = await fetch(baseUrl)
-        const data = await resp.json()
-        console.log(data)
+    const resp = await fetch(baseUrl)
+    const data = await resp.json()
+    console.log(data)
+    process_output(data)
+}
+//process the data from the api
+function process_output(data){
 
-    //create a result for name, ingredients, directions, and image
-    //send data to the webpage
-    //include youtube video api based on keyword search on whole drink
+    display_output(data)
+}
 
-        }
+
+//display result of the processed data
+function display_output(data){
+    
+    const result = data
+    result_field.innerHTML = result
+
+}
 
 
 
