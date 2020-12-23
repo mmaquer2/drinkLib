@@ -1,19 +1,18 @@
-
-
-//call the search function on click
-const search_btn = document.querySelector("#btn");
-search_btn.addEventListener("click", find_drinks)
+//
+//Drink Library Protfolio Project by Mike Maquera
+// Licensed under the MIT
 
 //get the input from the text box
-const saved_data = document.getElementById('search').value 
+var input_data = document.getElementById('search').value
 
 //get the id of the result field
 result_field = document.querySelector('#res')
 
-//search function
-async function find_drinks(saved_data) {
-        console.log(saved_data)
-        const item = 'rum'
+//call the search function on click
+const search_btn = document.querySelector("#btn");
+search_btn.addEventListener("click", async function() {
+        console.log(input_data)
+        const item = input_data
         const baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + item
 
     //searchUrl = (baseUrl + item)
@@ -22,7 +21,8 @@ async function find_drinks(saved_data) {
     const data = await resp.json()
     console.log(data)
     process_output(data)
-}
+})
+
 //process the data from the api
 function process_output(data){
 
