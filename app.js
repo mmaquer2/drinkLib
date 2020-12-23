@@ -36,7 +36,7 @@
         searchBox.value = 'Enter Drink Type'
         document.body.appendChild(searchBox)
 
-        var searchID = document.querySelector('#searchVal');
+        //var searchID = document.querySelector('#searchVal');
 
         const searchBtn = document.createElement('button')
          searchBtn.innerHTML = "Search for Drinks"
@@ -62,6 +62,9 @@
     const resp = await fetch(baseUrl)
     const data = await resp.json()
     console.log(data)
+
+    //create a result for name, ingredients, directions, and image
+    //send data to the webpage
 
 
     //include youtube video api based on keyword search on whole drink
